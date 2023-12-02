@@ -5,12 +5,15 @@ const daysOfWeek = ["M", "TU", "W", "TH", "F"];
 export default function Timetable(props: { courses: Course[] }) {
   const enrolledCourses = props.courses.filter((course) => course.isEnrolled);
   const daysOfWeek = ["M", "TU", "W", "TH", "F"];
-  const schedule: { [key: string]: string } = {};
+  const schedule: { [key: string]: string[] } = {};
 
   enrolledCourses.forEach((course) => {
     course.schedule?.forEach((entry) => {
       const [time, day] = entry.split("/");
-      schedule[`${time}/${day}`] = course.e;
+      if (!schedule[`${time}/${day}`]) {
+        schedule[`${time}/${day}`] = [];
+      }
+      schedule[`${time}/${day}`].push(course.e);
     });
   });
 
@@ -28,11 +31,11 @@ export default function Timetable(props: { courses: Course[] }) {
         {Array.from({ length: 5 }, (_, row) => (
           <tr key={row}>
             <td>{row + 1}</td>
-            {daysOfWeek.map((day, col) => (
+            {daysOfWeek.map((day) => (
               <td key={day}>
-                {schedule[`${row + 1}/${day}`] && (
-                  <div>{schedule[`${row + 1}/${day}`]}</div>
-                )}
+                {schedule[`${row + 1}/${day}`]?.map((course) => (
+                  <p key={course}>{course}</p>
+                ))}
               </td>
             ))}
           </tr>

@@ -28,7 +28,7 @@ export default function Home() {
       e: "Calculus",
       j: "微積分学",
       instructor: "Jane Smith",
-      schedule: ["3/TU", "2/TH", "3/TH"],
+      schedule: ["3/M", "2/TH", "3/TH"],
       unit: "4",
       isEnrolled: false,
     },
