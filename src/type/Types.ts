@@ -11,3 +11,14 @@ export interface Course {
   unit: string;
   isEnrolled: boolean;
 }
+
+export interface DevServerCourse {
+  cno: string;
+  term: string;
+  title_j: string;
+  title_e: string;
+  regno: number;
+  lang: string;
+  summary_e: string;
+  summary_j: string;
+}

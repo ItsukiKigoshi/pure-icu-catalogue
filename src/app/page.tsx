@@ -1,8 +1,9 @@
 "use client";
 import CourseOfferings from "@/components/CourseOfferings/CourseOfferings";
 import List from "@/components/List/List";
+import SearchCourses from "@/components/SearchCourses/SearchCourses";
 import Timetable from "@/components/Timetable/Timetable";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export default function Home() {
   const [courses, setCourses] = useState([
@@ -47,10 +48,6 @@ export default function Home() {
     },
   ]);
 
-  useEffect(() => {
-    const enroledCourses = courses.filter((course) => course.isEnrolled);
-  }, [courses]);
-
   const toggleIsEnrolled = (rgno: number) => {
     return () => {
       setCourses(
@@ -67,6 +64,8 @@ export default function Home() {
 
   return (
     <div>
+      <h1>Course Registration</h1>
+      <SearchCourses />
       <CourseOfferings courses={courses} toggleIsEnrolled={toggleIsEnrolled} />
       <Timetable courses={courses} />
       <List courses={courses} />
